@@ -8,6 +8,8 @@ namespace P3_CSH_1 {
     class Day19 : Day {
         public Day19() {
             addAufgabe("BSP Übung 1", bausteinPruefung1);
+            addAufgabe("BSP Übung 2", bausteinPruefung2);
+            addAufgabe("BSP Übung 3", bausteinPruefung3);
         }
 
         public void bausteinPruefung1() {
@@ -69,5 +71,104 @@ namespace P3_CSH_1 {
             }
         }
 
+
+        /*
+         * 
+         *      BSP Übungen 2
+         *      CSHG2, Nr. 3b)
+         */
+
+        public void bausteinPruefung2() {
+            ColorChanger colorChanger = new ColorChanger();
+            UserInput userInput = new UserInput();
+            userInput.KeyPressed += colorChanger.SetColor;
+            Console.WriteLine("Text in StandardFarbe");
+            userInput.StartInput();
+        }
+
+        class ColorChanger {
+            public ConsoleColor ForegroundColor { get; set; }
+            public ColorChanger() {
+                ForegroundColor = Console.ForegroundColor;
+            }
+            public void SetColor(ConsoleKeyInfo k) {
+                switch (k.Key) {
+                    case ConsoleKey.B:
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        break;
+                    case ConsoleKey.C:
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        break;
+                    case ConsoleKey.G:
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        break;
+                    case ConsoleKey.M:
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        break;
+                    case ConsoleKey.R:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        break;
+                    default:
+                        Console.ForegroundColor = ForegroundColor;
+                        break;
+                }
+            }
+        }
+
+        class UserInput {
+            public delegate void KeyPressedEventHandler(ConsoleKeyInfo k);
+            public event KeyPressedEventHandler KeyPressed;
+
+            public void StartInput() {
+                ConsoleKeyInfo temp;
+                while (true) {
+                    temp = Console.ReadKey(true);
+                    KeyPressed?.Invoke(temp);
+                    Console.WriteLine("Text in neuer Farbe");
+                }
+            }
+        }
+
+        /*
+         * 
+         *      BSP Übungen 3
+         *      CSHG2 3a)
+         * 
+         */
+
+        public void bausteinPruefung3() {
+            Möbel möbel = new Möbel();
+            Werkzeug werkzeug = new Werkzeug();
+            Console.WriteLine("Möbel Guid: " + möbel.Inventarnummer + "\nWerkzeug Guid: " + werkzeug.Inventarnummer);
+        }
+
+        interface IInventar {
+            Guid Inventarnummer { get; set; }
+            void Aufnahme();
+        }
+
+        static class Inventarverwaltung {
+            public static void Aufnahme(IInventar obj) {
+                obj.Inventarnummer = Guid.NewGuid();
+            }
+        }
+
+        abstract class Gebrauchsgut : IInventar {
+            public Guid Inventarnummer { get; set; }
+            public void Aufnahme() {
+                Inventarverwaltung.Aufnahme(this);
+            }
+            public Gebrauchsgut() {
+                Aufnahme();
+            }
+        }
+
+        class Möbel : Gebrauchsgut {
+
+        }
+
+        class Werkzeug : Gebrauchsgut {
+
+        }
     }
 }
