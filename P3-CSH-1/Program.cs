@@ -12,41 +12,26 @@ namespace P3_CSH_1 {
     class Program {
         
         static void Main(string[] args) {
-            Day tag1 = new Day1();
-            Day tag2 = new Day2();
-            Day tag3 = new Day3();
-            Day tag4 = new Day4();
-            Day tag5 = new Day5();
-            Day tag6 = new Day6();
-            Day tag7 = new Day7();
-            Day tag8 = new Day8();
-            Day tag9 = new Day9();
-            Day tag10 = new Day10();
-            Day tag11 = new Day11();
-            Day tag12 = new Day12();
-            //Day tag13 = new Day13();
-            Day tag14 = new Day14();
-            Day tag15 = new Day15();
-            Day tag16 = new Day16();
-            Day tag19 = new Day19();
+            new Day1();
+            new Day2();
+            new Day3();
+            new Day4();
+            new Day5();
+            new Day6();
+            new Day7();
+            new Day8();
+            new Day9();
+            new Day10();
+            new Day11();
+            new Day12();
+            new Day14();
+            new Day15();
+            new Day16();
+            new Day19();
 
-            StartProg();
+            Day.StartProg();
             Console.WriteLine("\n\n--- Ende ---");
             Console.ReadKey();
-        }
-
-        static void StartProg() {
-            int auswahl;
-            do {
-                Console.Clear();
-                Console.WriteLine("C# Programmieren 3");
-                Console.Write("\nWähle einen Tag aus \n(1 - " + Day.Days.Count + ", 0 = Ende)\n ");
-                if (Int32.TryParse(Console.ReadLine(), out auswahl)) {
-                    if (auswahl <= Day.Days.Count && auswahl > 0) {
-                        Day.Days[auswahl - 1].startDay();
-                    }
-                } else auswahl = 1;
-            } while (auswahl != 0);
         }
     }
 
@@ -67,6 +52,20 @@ namespace P3_CSH_1 {
         public Day() {
             days.Add(this);
             dayNumber = days.Count;
+        }
+
+        public static void StartProg() {
+            int auswahl;
+            do {
+                Console.Clear();
+                Console.WriteLine("C# Programmieren 3");
+                Console.Write("\nWähle einen Tag aus \n(1 - " + Days.Count + ", 0 = Ende)\n ");
+                if (Int32.TryParse(Console.ReadLine(), out auswahl)) {
+                    if (auswahl <= Days.Count && auswahl > 0) {
+                        Days[auswahl - 1].startDay();
+                    }
+                } else auswahl = 1;
+            } while (auswahl != 0);
         }
 
         public void startDay() {
