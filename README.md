@@ -20,9 +20,9 @@ Third programming class during retraining
 
 ---
 
-## Small Feature showcase
+## Small feature showcase
 
-Here i tryed to make an object oriented approach to the navigation method which i developed in the P2 course. You can have a look at the procedural version right [here](https://github.com/TobMoeller/P2-C-1).
+Here i tried to take an object oriented approach to the navigation method which i developed in the P2 course. You can have a look at the procedural version right [here](https://github.com/TobMoeller/P2-C-1).
 
 I thought of a class that handles the navigation part. Off of this class each individual day inherits all needed attributes and methods:
 
@@ -91,7 +91,7 @@ class Day {
 }
 ```
 
-So with this class, anytime i instantiate a new Day it gets added to the static `days` list from where i can easily navigate between them.
+Anytime i instantiate a new Day it gets added to the static `days` list from where i can easily navigate between them.
 
 Each day has its own list of the struct `Aufgabe` which contains a delegate and a matching description of it. This list gets filled with the methods of each day.
 
